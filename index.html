@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="This is a redesign of the PFM">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>SYM</title>
+  </head>
+  <body>
+    <div id="body">
+      <header>
+        <div id="navbar-left-container">
+          <span class="navbar-links" onclick="location.reload()">SYM</span>
+        </div>
+        <div id="navbar-right-container">
+          <span id="navbar-budget" class="navbar-links" onclick="createBudgetPage()">Budgeting</span>
+          <span class="navbar-links" onclick="createPortfolioPage()">Portfolio Simulation</span>
+        </div>
+      </header>
+
+      <div class="spacer"></div>
+
+      <div id="main-description">
+        <div class="feature-descriptions">
+          <h1>Budgeting</h1>
+          <p>Create simple budgets with ease and download them for your own records.</p>
+          <button class="feature-description-buttons" onclick="createBudgetPage()">Budgeting</button>
+        </div>
+        <div class="feature-descriptions">
+          <h1>Portfolio Simulation</h1>
+          <p>Simulate growth of investments such as 401K, IRA, Stocks, and Real Estate.</p>
+          <button class="feature-description-buttons" onclick="createPortfolioPage()">Portfolio Simulation</button>
+        </div>
+      </div>
+    </div>
+    <script async src="removeNodes.js"></script>
+    <script async src="createBudgetPage.js"></script>
+    <script async src="createPortfolioPage.js"></script>
+    <script async src="addCategoryToBudgetPage.js"></script>
+  </body>
+</html>
