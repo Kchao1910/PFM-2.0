@@ -46,6 +46,7 @@ body {
 button {
   background: transparent;
   font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
 }
 
 canvas {
@@ -77,6 +78,14 @@ canvas {
 .category-containers-margin-right {
   margin-left: 0.5%;
   margin-right: 1%;
+}
+
+#csv-download-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 40px;
+  text-align: center;
 }
 
 .feature-descriptions {
