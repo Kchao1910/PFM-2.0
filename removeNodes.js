@@ -31,4 +31,6 @@ function removeNodesFromCategoryContainers() {
 
 function removeBudgetSummaryContainer(body) {
   body.removeChild(body.lastChild);
+  body.removeChild(body.lastChild);
 }
+
