@@ -21,6 +21,8 @@ function createBudgetSummaryElements(body) {
   const totalBudgetTextContainer = document.createElement("div");
   const totalExpensesTextContainer = document.createElement("div");
   const budgetLeftoverTextContainer = document.createElement("div");
+  const budgetChartContainer = document.createElement("canvas");
+  budgetChartContainer.setAttribute("id", "budget-chart-container");
 
   // create summary header
   const budgetSummaryHeader = document.createElement("h2");
@@ -42,6 +44,7 @@ function createBudgetSummaryElements(body) {
   budgetSummaryContainer.appendChild(totalBudgetTextContainer);
   budgetSummaryContainer.appendChild(totalExpensesTextContainer);
   budgetSummaryContainer.appendChild(budgetLeftoverTextContainer);
+  budgetSummaryContainer.appendChild(budgetChartContainer);
 
   // append summary element to summary container
   budgetSummaryHeaderContainer.appendChild(budgetSummaryHeader);
@@ -73,6 +76,7 @@ function setBudgetSummaryValues(budgetSummaryHeader, totalBudgetText, totalExpen
 
   // set budget leftover
   calculateBudgetLeftover(totalBudget, totalExpenses, budgetLeftoverText);
+  createBudgetChart(totalBudget, totalExpenses);
   
 }
 
@@ -96,4 +100,40 @@ function calculateBudgetLeftover(totalBudget, totalExpenses, budgetLeftoverText)
   } else {
     budgetLeftoverText.innerHTML = "You are over budget by " + "<span style='color: red'>$" + Math.abs(budgetLeftover).toFixed(2) + "</span>.";
   }
+}
+
+
+function createBudgetChart(totalBudget, totalExpenses) {
+  let ctx = document.querySelector("#budget-chart-container").getContext("2d");
+  
+  Chart.defaults.global.defaultFontColor = 'black';
+
+  let myDoughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ["Total Budget", "Total Expenses"],
+      datasets: [{
+        label: "Total Budget vs Total Expenses",
+        data: [totalBudget, totalExpenses],
+        backgroundColor: [
+          "rgb(106, 252, 106)",
+          "rgb(252, 106, 107)"
+        ]
+      }],
+    },
+    options: {
+      defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Montserrat', sans-serif",
+      responsive: false,
+      title: {
+        display: true,
+        fontSize: 24,
+        text: "Total Budget vs Total Expenses"
+      },
+      legend: {
+        labels: {
+          fontSize: 16
+        }
+      }
+    }
+  });
 }
