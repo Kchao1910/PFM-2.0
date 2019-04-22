@@ -21,6 +21,7 @@ function createBudgetPage() {
   const budgetHeaderContainer = document.createElement("div");
   const budgetMonthSelectionContainer = document.createElement("div");
   const budgetAddRemoveCategoryContainer = document.createElement("div");
+  budgetMonthSelectionContainer.setAttribute("id", "budget-month-selection-container");
 
   // create budget header
   const budgetHeader = document.createElement("h1");
@@ -32,6 +33,7 @@ function createBudgetPage() {
 
   // create month selection
   const monthSelection = document.createElement("select");
+  monthSelection.setAttribute("id", "month-selection");
 
   // create month options
   const january = document.createElement("option");
@@ -135,6 +137,9 @@ function createBudgetPage() {
   budgetSubmitButtonContainer.setAttribute("id", "budget-submit-button-container");
   budgetSubmitButton.setAttribute("class", "feature-description-buttons");
   budgetSubmitButton.innerHTML = "Submit";
+  budgetSubmitButton.onclick = function() {
+    createBudgetSummaryElements(body);
+  }
 
   // append budget container to body
   body.appendChild(budgetContainer);
@@ -192,7 +197,5 @@ function createBudgetPage() {
   // append submit button to body
   body.appendChild(budgetSubmitButtonContainer);
   budgetSubmitButtonContainer.appendChild(budgetSubmitButton);
-
-
 }
 
