@@ -79,7 +79,7 @@ function createBudgetPage() {
 
   // create instructions for adding a new category and removing an existing category
   const categoryInstructions = document.createElement("label");
-  categoryInstructions.innerHTML = "Click on the '+' button to add a category or '-' button to remove a category.&ensp;";
+  categoryInstructions.innerHTML = "Click on the <span style='color: green'>'&plus;'</span> button to add a category or the <span style='color: red'>'&minus;'</span> button to remove a category.&ensp;";
 
   // create add category button
   const addCategoryButton = document.createElement("button");
