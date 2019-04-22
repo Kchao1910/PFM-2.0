@@ -54,6 +54,9 @@ function createBudgetSummaryElements(body) {
 
   // setting the values for budget summary
   setBudgetSummaryValues(budgetSummaryHeader, totalBudgetText, totalExpensesText, budgetLeftoverText);
+
+  // create csv download elements
+  createCSVDownloadElements(body);
 }
 
 function setBudgetSummaryValues(budgetSummaryHeader, totalBudgetText, totalExpensesText, budgetLeftoverText) {
@@ -77,7 +80,6 @@ function setBudgetSummaryValues(budgetSummaryHeader, totalBudgetText, totalExpen
   // set budget leftover
   calculateBudgetLeftover(totalBudget, totalExpenses, budgetLeftoverText);
   createBudgetChart(totalBudget, totalExpenses);
-  
 }
 
 function calculateTotalSum(valueList) {
@@ -136,4 +138,90 @@ function createBudgetChart(totalBudget, totalExpenses) {
       }
     }
   });
+}
+
+function createCSVDownloadElements(body) {
+  //create csv container
+  const csvDownloadContainer = document.createElement("div");
+  csvDownloadContainer.setAttribute("id", "csv-download-container");
+
+  // create sub containers
+  const csvInstructionsContainer = document.createElement("div");
+  const csvDownloadInputNButtonContainer = document.createElement("div");
+
+  // guide user with correct input syntax
+  const csvDownloadInstructions = document.createElement("p");
+  csvDownloadInstructions.innerHTML = "Enter in the name of your file (don't include .csv)";
+
+  // create input area for naming csv file
+  const csvInput = document.createElement("input");
+  csvInput.setAttribute("id", "csv-filename-input");
+
+  // create download button
+  const csvDownloadButton = document.createElement("button");
+  csvDownloadButton.innerHTML = "Download";
+  csvDownloadButton.setAttribute("class", "feature-description-buttons");
+  csvDownloadButton.onclick = function() {
+    createCSVDownload();
+  }
+
+  // append elements to body and sub containers
+  body.appendChild(csvDownloadContainer);
+  csvDownloadContainer.appendChild(csvInstructionsContainer);
+  csvDownloadContainer.appendChild(csvDownloadInputNButtonContainer);
+  csvInstructionsContainer.appendChild(csvDownloadInstructions);
+  csvDownloadInputNButtonContainer.appendChild(csvInput);
+  csvDownloadInputNButtonContainer.appendChild(csvDownloadButton);
+}
+
+function createCSVDownload() {
+  // get file name
+  const csvFileName = document.querySelector("#csv-filename-input").value;
+
+  // get values for categories, budgets, and expenses
+  const categoryValuesList = document.querySelectorAll(".category-input");
+  const budgetValuesList = document.querySelectorAll(".budget-input");
+  const expenseValuesList = document.querySelectorAll(".expense-input");
+
+  // list for storing individual values 
+  var categoryList = [];
+  var budgetList = [];
+  var expenseList = [];
+  var totalLeftList = [];
+    
+  // this row is for csv formatting
+  var row = [];
+
+  // list values 
+  for (i = 0; i < categoryValuesList.length; i++) {
+    var categoryValue = categoryValuesList[i].value;
+    categoryList[i] = categoryValue;
+    var budgetValue = parseFloat(budgetValuesList[i].value);
+    budgetList[i] = budgetValue;
+    var expenseValue = parseFloat(expenseValuesList[i].value);
+    expenseList[i] = expenseValue;
+    var totalLeftValue = budgetValue - expenseValue;
+    totalLeftList[i] = totalLeftValue;
+  }
+
+  // row creation
+  for (i = 0; i < categoryList.length; i++) {
+      row[i] = [categoryList[i], budgetList[i], expenseList[i], totalLeftList[i]];
+  }
+
+  // inserting rows into correct format
+  var csv = 'Category Name, Budget, Expenses, Total Left\n';
+  row.forEach(function(rowList) {
+    csv += rowList.join(',');
+    csv += "\n";
+  });
+ 
+  // make hyperlink download
+  var link = document.createElement('a');
+  link.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+  link.target = '_blank';
+  link.download = csvFileName + ".csv";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
