@@ -7,6 +7,10 @@ body {
   padding: 40px 100px;
 }
 
+#budget-chart-container {
+  margin-top: 40px;
+}
+
 #budget-container {
   display: flex;
   flex-direction: column;
@@ -42,6 +46,11 @@ body {
 button {
   background: transparent;
   font-family: 'Montserrat', sans-serif;
+}
+
+canvas {
+  height: 300px;
+  width: 600px;
 }
 
 .category-buttons {
