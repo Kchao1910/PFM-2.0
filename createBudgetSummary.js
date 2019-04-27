@@ -66,6 +66,12 @@ function setBudgetSummaryValues(budgetSummaryHeader, totalBudgetText, totalExpen
   const budgetValuesList = document.querySelectorAll(".budget-input");
   const expenseValuesList = document.querySelectorAll(".expense-input");
 
+  const regexCheck = validateInput(categoryValuesList, budgetValuesList, expenseValuesList);
+  // if at least one input doesn't match regex exit out of script
+  if (regexCheck === false) {
+    return;
+  }
+
   // set budget summary header (shows month chosen)
   budgetSummaryHeader.innerHTML = "Budget Summary for " + monthSelectionValue;
 
@@ -80,6 +86,29 @@ function setBudgetSummaryValues(budgetSummaryHeader, totalBudgetText, totalExpen
   // set budget leftover
   calculateBudgetLeftover(totalBudget, totalExpenses, budgetLeftoverText);
   createBudgetChart(totalBudget, totalExpenses);
+}
+
+function validateInput(categoryValuesList, budgetValuesList, expenseValuesList) {
+  for (let i = 0; i < categoryValuesList.length; i++) {
+    // category sanitize checks that the category input values only contain letters or numbers
+    let categorySanitizeRegex = /^([A-Z]|[a-z]|[0-9])+$/;
+    // budget and expense sanitize checks that budget and expense inputs only contain a combination of integers and/or floats
+    let budgetAndExpenseSanitizeRegex = /^([0-9])+(\.[0-9]{2})*$/;
+
+    if (categorySanitizeRegex.test(categoryValuesList[i].value) !== true) {
+      console.log(categoryValuesList[i].value);
+      alert("Category #"  + String(i + 1) + " should only include alphanumeric characters!");
+      return false;
+    }
+    if (budgetAndExpenseSanitizeRegex.test(budgetValuesList[i].value) !== true) {
+      alert("Budget #" + String(i + 1) + " should only include integers and/or floats!");
+      return false;
+    }
+    if (budgetAndExpenseSanitizeRegex.test(expenseValuesList[i].value) !== true) {
+      alert("Expense #" + String(i + 1) + " should only include integers and/or floats!");
+      return false;
+    }
+  }
 }
 
 function calculateTotalSum(valueList) {
