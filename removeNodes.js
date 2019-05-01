@@ -1,8 +1,13 @@
+function removeAsset(assetContainer) {
+  assetContainer.remove();
+}
+
 function removeNodesFromMainSite() {
   const body = document.getElementById("body");
+  let bodyLength = body.childNodes.length;
   
-  for (let i = 0; i < body.childElementCount - 1; i++) {
-    body.removeChild(body.lastChild);
+  for (let i = bodyLength - 1; i > 3; i--) {
+    body.removeChild(body.childNodes[i]);
   }
 
   return body;
@@ -31,6 +36,10 @@ function removeNodesFromCategoryContainers() {
 
 function removeBudgetSummaryContainer(body) {
   body.removeChild(body.lastChild);
+  body.removeChild(body.lastChild);
+}
+
+function removePortfolioSummaryContainer(body) {
   body.removeChild(body.lastChild);
 }
 
