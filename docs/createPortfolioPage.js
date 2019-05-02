@@ -138,7 +138,7 @@ function addCashAsset(portfolioAssetSubContainer) {
 
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("class", "remove-asset-button");
-  deleteButton.innerHTML = "<i class='fal fa-times-circle'></i>";
+  deleteButton.innerHTML = "<i class='far fa-times-circle'></i>";
   deleteButton.onclick = function() {
     removeAsset(cashAssetContainer);
   }
@@ -182,7 +182,7 @@ function addEquityAsset(portfolioAssetSubContainer) {
 
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("class", "remove-asset-button");
-  deleteButton.innerHTML = "<i class='fal fa-times-circle'></i>";
+  deleteButton.innerHTML = "<i class='far fa-times-circle'></i>";
   deleteButton.onclick = function() {
     removeAsset(equityAssetContainer);
   }
@@ -226,7 +226,7 @@ function addBondAsset(portfolioAssetSubContainer) {
 
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("class", "remove-asset-button");
-  deleteButton.innerHTML = "<i class='fal fa-times-circle'></i>";
+  deleteButton.innerHTML = "<i class='far fa-times-circle'></i>";
   deleteButton.onclick = function() {
     removeAsset(bondAssetContainer);
   }
@@ -270,7 +270,7 @@ function addPropertyAsset(portfolioAssetSubContainer) {
 
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("class", "remove-asset-button");
-  deleteButton.innerHTML = "<i class='fal fa-times-circle'></i>";
+  deleteButton.innerHTML = "<i class='far fa-times-circle'></i>";
   deleteButton.onclick = function() {
     removeAsset(propertyAssetContainer);
   }
@@ -314,7 +314,7 @@ function addCommodityAsset(portfolioAssetSubContainer) {
 
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("class", "remove-asset-button");
-  deleteButton.innerHTML = "<i class='fal fa-times-circle'></i>";
+  deleteButton.innerHTML = "<i class='far fa-times-circle'></i>";
   deleteButton.onclick = function() {
     removeAsset(commodityAssetContainer);
   }
