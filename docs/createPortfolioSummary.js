@@ -1,9 +1,22 @@
 function createPortfolioSummaryElements(body) {
   const assetSubContainer = document.querySelectorAll(".asset-sub-container");
 
+  // retrieving the values to set the values for the budget summary
+  const assetTypeValues = document.querySelectorAll(".asset-sub-container");
+  const assetWeightInputValues = document.querySelectorAll(".asset-weight-input");
+  const assetExpectedReturnValues = document.querySelectorAll(".asset-expected-return-input");
+
   if (assetSubContainer.length === 0) {
     alert("No asset(s) chosen!");
     return;
+  }
+
+  // check if user filled out all fields
+  for (let i = 0; i < assetWeightInputValues.length; i++) {
+    if (assetWeightInputValues[i].value === "" || assetExpectedReturnValues[i].value === "") {
+      alert("Please fill in all input fields");
+      return;
+    }
   }
 
   // makes sure that duplicate summaries do not appear if user decides to click submit button more than one time
@@ -41,15 +54,10 @@ function createPortfolioSummaryElements(body) {
   expectedReturnContainer.appendChild(expectedReturnText);
 
   // setting the values for budget summary
-  setPortfolioSummaryValues(portfolioSummaryHeader, expectedReturnText);
+  setPortfolioSummaryValues(portfolioSummaryHeader, expectedReturnText, assetTypeValues, assetWeightInputValues, assetExpectedReturnValues);
 }
 
-function setPortfolioSummaryValues(portfolioSummaryHeader, expectedReturnText) {
-  // retrieving the values to set the values for the budget summary
-  const assetTypeValues = document.querySelectorAll(".asset-sub-container");
-  const assetWeightInputValues = document.querySelectorAll(".asset-weight-input");
-  const assetExpectedReturnValues = document.querySelectorAll(".asset-expected-return-input");
-
+function setPortfolioSummaryValues(portfolioSummaryHeader, expectedReturnText, assetTypeValues, assetWeightInputValues, assetExpectedReturnValues) {
   const regexCheck = validatePortfolioInput(assetWeightInputValues, assetExpectedReturnValues);
   // if at least one input doesn't match regex exit out of script
   if (regexCheck === false) {
