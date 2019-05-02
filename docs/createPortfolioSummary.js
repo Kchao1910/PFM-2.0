@@ -145,11 +145,11 @@ function createPortfolioChart(assetTypeValues, assetWeightInputValues) {
         label: "Asset Weight Distribution",
         data: assetWeightInputValuesList,
         backgroundColor: [
-          "rgb(45, 128, 86)",
-          "rgb(166, 255, 210)",
-          "rgb(90, 255, 173)",
-          "rgb(83, 128, 105)",
-          "rgb(71, 204, 138)"
+          "rgb(255, 110, 94)",
+          "rgb(255, 156, 117)",
+          "rgb(255, 198, 140)",
+          "rgb(255, 226, 158)",
+          "rgb(167, 209, 214)"
         ]
       }],
     },
