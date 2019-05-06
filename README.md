@@ -1,5 +1,8 @@
 # SYM
 
+# Demo
+https://kchao1910.github.io/SYM/
+
 # Overview
 SYM is a web application that creates simple budgets and calculates the annual return of a simulated portfolio.
 
